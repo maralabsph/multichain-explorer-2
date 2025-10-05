@@ -36,7 +36,7 @@ DEFAULT_TEMPLATE = """
 <body>
     <div class="container">
 	<table class="header-table"><tr><td class="header-logo">
-	<a title="Back to home" href=""><img src="logo32.png" alt="Aksyonchain logo" height="40" /></a>
+	<a title="Back to home" href=""><img src="logo.jpg" alt="Aksyonchain logo" height="40" /></a>
 	</td><td class="header-title">
 	<h1>%(h1)s</h1>
 	</td><td class="header-search">
