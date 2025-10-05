@@ -26,7 +26,7 @@ def multichain_init_rpc_parameters(chain):
     if readconf.is_missing(cfg.settings[chain],'rpcport'):
         params_file=datadir + "params.dat"
         if not utils.file_exists(params_file):
-            utils.print_error("Couldn't find MultiChain directory " + datadir)            
+            utils.print_error("Couldn't find AksyonChain directory " + datadir)
             return False
         params=readconf.read_plain_config_file(params_file)         
         if params['default-rpc-port'] is None:
@@ -119,7 +119,7 @@ class MCEChain:
                 req_json['error']="Error " + str(req_json['error'] ['code']) + ": " + req_json['error']['message']
             return req_json
         except urllib.error.URLError as e:
-            error_str="MultiChain is not running: " + str(e.reason)
+            error_str="AksyonChain is not running: " + str(e.reason)
             req_json={
                 'result': None,
                 'error' : error_str,
@@ -144,7 +144,7 @@ class MCEChain:
         req_json=json.loads(resp.decode('utf-8'),object_pairs_hook=OrderedDict)
         
         if req_json is None:
-            error_str="MultiChain connection error"
+            error_str="AksyonChain connection error"
             req_json={
                 'result': None,
                 'error' : error_str,

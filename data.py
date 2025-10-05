@@ -281,7 +281,7 @@ def tags_to_labels(tags):
         take_it=True
         if tag not in TAG_TO_LABEL_TEXT:
             this_label_type='danger'
-            labels.append((this_label_type,"Unknown MultiChain Command"))
+            labels.append((this_label_type,"Unknown AksyonChain Command"))
             take_it=False
         else:
             if len(TAG_TO_LABEL_TEXT[tag]) == 0:
@@ -1416,7 +1416,7 @@ class MCEDataHandler():
                 return self.standard_response('<div class="alert alert-danger" role="warning">'+response['error']+'</div>')
 
         if 'issuecount' not in response['result'][0]:
-            return self.standard_response('<div class="alert alert-danger" role="warning">Not supported in this version of MultiChain</div>')
+            return self.standard_response('<div class="alert alert-danger" role="warning">Not supported in this version of AksyonChain</div>')
             
         fungible=True
         if ('fungible' in response['result'][0]):

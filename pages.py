@@ -36,20 +36,13 @@ DEFAULT_TEMPLATE = """
 <body>
     <div class="container">
 	<table class="header-table"><tr><td class="header-logo">
-	<a title="Back to home" href=""><img src="logo32.png" alt="MultiChain logo" height="40" /></a>
+	<a title="Back to home" href=""><img src="logo32.png" alt="Aksyonchain logo" height="40" /></a>
 	</td><td class="header-title">
 	<h1>%(h1)s</h1>
 	</td><td class="header-search">
 	%(search)s
      </td></tr></table>
     %(body)s
-    
-    <br><br>
-    <p style="font-size: smaller">
-        <span style="font-style: italic">
-            Powered by <a href="https://github.com/MultiChain/multichain-explorer-2">MultiChain Explorer %(version)s</a>
-        </span>
-    </p>
     </div>
 </body>
 </html>
@@ -120,8 +113,8 @@ class MCEPageHandler():
         body = '<div id="chains">' + DEFAULT_LOADING_HTML + '</div>'
         
         tvars['body']=body          
-        tvars['title']="MultiChain Explorer"
-        tvars['h1']="MultiChain Explorer"
+        tvars['title']="AksyonChain Explorer"
+        tvars['h1']="AksyonChain Explorer"
 
 # List of divs to be updated and elements of the path which should retreive data for this div
         self.objects=[]
@@ -159,7 +152,7 @@ class MCEPageHandler():
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name']
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name']
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>'
         self.objects=[]
         self.objects.append({"id":"summary","path":[chain.config['path-name'],"chainsummary-data"]});
@@ -194,7 +187,7 @@ class MCEPageHandler():
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
         title=" - stream: " + entity_name
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + title
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + title
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + title
 
 # List of divs to be updated and elements of the path which should retreive data for this div
@@ -232,7 +225,7 @@ class MCEPageHandler():
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
         title=" - asset: " + entity_name
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + title
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + title
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + title
 
         self.objects=[]
@@ -272,7 +265,7 @@ class MCEPageHandler():
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
         title=" - address: " + str(params[0])
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + title
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + title
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - address: " + str(params[0][0:10]) + "..."
 
         self.objects=[]
@@ -318,7 +311,7 @@ class MCEPageHandler():
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
         title=" - " + display_name
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + title
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + title
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + title
         
 # List of divs to be updated and elements of the path which should retreive data for this div
@@ -345,7 +338,7 @@ class MCEPageHandler():
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - asset issues"
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - asset issues"
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - " + '<a href="'+chain.config['path-name']+"/asset/"+entity_quoted+'">' + entity_name + '</a>' + " - asset issues"
 
         self.objects=[]
@@ -368,7 +361,7 @@ class MCEPageHandler():
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - " + str(params[0]) + " - address streams"
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - " + str(params[0]) + " - address streams"
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - " + '<a href="'+chain.config['path-name']+"/address/"+str(params[0])+'">' + str(params[0]) + '</a>' + " - address streams"
 
         self.objects=[]
@@ -391,7 +384,7 @@ class MCEPageHandler():
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - " + str(params[0]) + " - address assets"
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - " + str(params[0]) + " - address assets"
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - " + '<a href="'+chain.config['path-name']+"/address/"+str(params[0])+'">' + str(params[0]) + '</a>' + " - address assets"
 
         self.objects=[]
@@ -414,7 +407,7 @@ class MCEPageHandler():
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - " + str(params[0]) + " - address transactions"
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - " + str(params[0]) + " - address transactions"
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - " + '<a href="'+chain.config['path-name']+"/address/"+str(params[0])+'">' + str(params[0]) + '</a>' + " - address transactions"
 
         self.objects=[]
@@ -437,7 +430,7 @@ class MCEPageHandler():
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - block " + str(params[0]) + " - transactions"
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - block " + str(params[0]) + " - transactions"
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - block " + '<a href="'+chain.config['path-name']+"/block/"+str(params[0])+'">' + str(params[0]) + '</a>' + " - transactions"
 
         self.objects=[]
@@ -463,7 +456,7 @@ class MCEPageHandler():
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - asset transactions"
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - asset transactions"
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - " + '<a href="'+chain.config['path-name']+"/asset/"+entity_quoted+'">' + entity_name + '</a>' + " - asset transactions"
 
         self.objects=[]
@@ -489,10 +482,10 @@ class MCEPageHandler():
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
         if entity_quoted != DEFAULT_NATIVE_CURRENCY_ID:
-            tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - asset holders"
+            tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - asset holders"
             tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - " + '<a href="'+chain.config['path-name']+"/asset/"+entity_quoted+'">' + entity_name + '</a>' + " - asset holders"
         else:
-            tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - Native Currency holders"
+            tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - Native Currency holders"
             tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - Native Currency holders"
             
         self.objects=[]
@@ -518,10 +511,10 @@ class MCEPageHandler():
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
         if entity_quoted != DEFAULT_NATIVE_CURRENCY_ID:
-            tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - " + str(params[1]) + " - transactions for asset " + entity_name
+            tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - " + str(params[1]) + " - transactions for asset " + entity_name
             tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - " + '<a href="'+chain.config['path-name']+"/address/"+str(params[1])+'">' + str(params[1]) + '</a>' + " - transactions for asset " + '<a href="'+chain.config['path-name']+"/asset/"+entity_quoted+'">' + entity_name + '</a>'
         else:
-            tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - " + str(params[1]) + " - Native Currency transactions"
+            tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - " + str(params[1]) + " - Native Currency transactions"
             tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - " + '<a href="'+chain.config['path-name']+"/address/"+str(params[1])+'">' + str(params[1]) + '</a>' + " - Native Currency transactions"
             
         self.objects=[]
@@ -541,7 +534,7 @@ class MCEPageHandler():
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - global permissions"
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - global permissions"
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - global permissions"
 
         self.objects=[]
@@ -567,7 +560,7 @@ class MCEPageHandler():
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - asset permissions"
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - asset permissions"
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - " + '<a href="'+chain.config['path-name']+"/asset/"+entity_quoted+'">' + entity_name + '</a>' + " - asset permissions"
 
         self.objects=[]
@@ -593,7 +586,7 @@ class MCEPageHandler():
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - stream permissions"
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - stream permissions"
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - " + '<a href="'+chain.config['path-name']+"/stream/"+entity_quoted+'">' + entity_name + '</a>' + " - stream permissions"
 
         self.objects=[]
@@ -619,7 +612,7 @@ class MCEPageHandler():
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - " + entity_name+ " - stream items"
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - " + entity_name+ " - stream items"
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - " + '<a href="'+chain.config['path-name']+"/stream/"+entity_quoted+'">' + entity_name + '</a>' + " - stream items"
 
         self.objects=[]
@@ -645,7 +638,7 @@ class MCEPageHandler():
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - stream keys"
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - stream keys"
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - " + '<a href="'+chain.config['path-name']+"/stream/"+entity_quoted+'">' + entity_name + '</a>' + " - stream keys"
 
         self.objects=[]
@@ -671,7 +664,7 @@ class MCEPageHandler():
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - stream publishers"
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - stream publishers"
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - " + '<a href="'+chain.config['path-name']+"/stream/"+entity_quoted+'">' + entity_name + '</a>' + " - stream publishers"
 
         self.objects=[]
@@ -696,7 +689,7 @@ class MCEPageHandler():
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - items for key " + parse.unquote_plus(str(params[1]))
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - items for key " + parse.unquote_plus(str(params[1]))
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - " + '<a href="'+chain.config['path-name']+"/stream/"+entity_quoted+'">' + entity_name + '</a>' + " - items for key " + parse.unquote_plus(str(params[1]))
 
         self.objects=[]
@@ -722,7 +715,7 @@ class MCEPageHandler():
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - items published by " + str(params[1])
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + " - " + entity_name + " - items published by " + str(params[1])
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - " + '<a href="'+chain.config['path-name']+"/stream/"+entity_quoted+'">' + entity_name + '</a>' + " - items published by " + '<a href="'+chain.config['path-name']+"/address/"+str(params[1])+'">' + str(params[1])[0:10] + '...' + '</a>'
 
         self.objects=[]
@@ -750,7 +743,7 @@ class MCEPageHandler():
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
         title=" - block " + params[0]
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + title
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + title
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + title
 
 # List of divs to be updated and elements of the path which should retreive data for this div
@@ -778,7 +771,7 @@ class MCEPageHandler():
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
         title=" - transaction: " + params[0]
-        tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + title
+        tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + title
         tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + " - transaction: " + params[0][0:10] + "..."
 
 # List of divs to be updated and elements of the path which should retreive data for this div
@@ -794,10 +787,10 @@ class MCEPageHandler():
         
         title=" - Page Not Found"
         if chain is None:
-            tvars['title']="MultiChain Explorer" + title
+            tvars['title']="AksyonChain Explorer" + title
             tvars['h1']='<a href="">' + title + '</a>'
         else:
-            tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + title
+            tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + title
             tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + title
 #        self.template_vars=tvars
         self.status=404
@@ -809,10 +802,10 @@ class MCEPageHandler():
         tvars['body']='<p class="error"></p>';
         title=""
         if chain is None:
-            tvars['title']="MultiChain Explorer" + title
+            tvars['title']="AksyonChain Explorer" + title
             tvars['h1']='<a href="">' + title + '</a>'
         else:
-            tvars['title']="MultiChain Explorer - " + chain.config['display-name'] + title
+            tvars['title']="AksyonChain Explorer - " + chain.config['display-name'] + title
             tvars['h1']='<a href="'+chain.config['path-name']+'">' + chain.config['display-name'] + '</a>' + title
 #        self.template_vars=tvars
         self.status=404

@@ -11,7 +11,7 @@ import readconf
 import utils
 import server
 
-explorer_app = "MultiChain Explorer"
+explorer_app = "AksyonChain Explorer"
 
 
 def main(argv):
