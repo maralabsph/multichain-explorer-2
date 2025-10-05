@@ -76,6 +76,48 @@ class MCEPageHandler():
         
     def standard_response(self,tvars):
         base_page=cfg.settings['main']['base']
+
+        conversion_script = """
+        <script>
+        function toggleHex(buttonElement) {
+            // The span holding the value is expected to be right before the button
+            const valueSpan = buttonElement.previousElementSibling;
+            if (!valueSpan) return;
+
+            const originalHex = valueSpan.getAttribute('data-original-hex');
+            const isShowingHex = valueSpan.getAttribute('data-showing-hex') === 'true';
+
+            // Self-contained function to convert a hex string to a text string
+            const hexToString = (hex) => {
+                let str = '';
+                try {
+                    for (let i = 0; i < hex.length; i += 2) {
+                        str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+                    }
+                } catch (e) {
+                    return '[Invalid Hex Data]';
+                }
+                // Check for non-printable characters and return a placeholder if found
+                if (/[\\x00-\\x08\\x0E-\\x1F]/.test(str)) {
+                    return '[Binary Data]';
+                }
+                return str;
+            };
+
+            if (isShowingHex) {
+                // If currently showing hex, switch to text
+                valueSpan.textContent = hexToString(originalHex);
+                buttonElement.textContent = 'Show Hex';
+                valueSpan.setAttribute('data-showing-hex', 'false');
+            } else {
+                // If currently showing text, switch back to hex
+                valueSpan.textContent = originalHex;
+                buttonElement.textContent = 'Show Text';
+                valueSpan.setAttribute('data-showing-hex', 'true');
+            }
+        }
+        </script>
+        """
         
         if len(self.objects) > 0:
             refresh_script='<script>var timer=0;function getdata(){'
@@ -102,7 +144,7 @@ class MCEPageHandler():
             refresh_script += '$(document).ready(function(){getdata();timer=setInterval(function(){getdata()}, ' + str(self.refresh) + ');'
             refresh_script += 'if(document.addEventListener) document.addEventListener("visibilitychange", visibilityChanged);});'
             refresh_script += 'function visibilityChanged() {clearTimeout(timer);if(!document.hidden)getdata();timer = setInterval(function(){getdata()}, (document.hidden) ? '+ str(HIDDEN_REFRESH) + ' : ' + str(self.refresh) + ');}</script>'
-            tvars['myheader']=refresh_script
+            tvars['myheader'] = conversion_script + refresh_script
 #            print(refresh_script)
             
         return (self.status, self.headers, bytes(self.template % tvars,"utf-8"))
@@ -179,10 +221,6 @@ class MCEPageHandler():
         body += '<div id="summary">' + DEFAULT_LOADING_HTML + '</div>'
         body += '<h3>Recently Published <a href="'+chain.config['path-name']+"/streamitems/"+entity_quoted+'">Items</a></h3>'
         body += '<div id="items">' + DEFAULT_LOADING_HTML + '</div>'
-#        body += '<h3>Recently Created <a href="'+chain.config['path-name']+"/streamkeys/"+entity_quoted+'">Keys</a></h3>'
-#        body += '<div id="keys">' + DEFAULT_LOADING_HTML + '</div>'
-#        body += '<h3><a href="'+chain.config['path-name']+"/streampublishers/"+entity_quoted+'">Publishers</a></h3>'
-#        body += '<div id="publishers">' + DEFAULT_LOADING_HTML + '</div>'
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
@@ -196,8 +234,7 @@ class MCEPageHandler():
         self.objects.append({"id":"items","path":[chain.config['path-name'],"streamitems-data",entity_quoted],"params":{"onlylast":1}});
         self.objects.append({"id":"keys","path":[chain.config['path-name'],"streamkeys-data",entity_quoted],"params":{"onlylast":1}});
         self.objects.append({"id":"publishers","path":[chain.config['path-name'],"streampublishers-data",entity_quoted],"params":{"onlylast":1}});
-        
-#        self.template_vars=tvars
+
         return self.standard_response(tvars)
         
     def handle_asset(self,chain,params,nparams):
@@ -217,10 +254,6 @@ class MCEPageHandler():
         body += '<div id="summary">' + DEFAULT_LOADING_HTML + '</div>'
         body += '<h3>Latest <a href="'+chain.config['path-name']+"/assettransactions/"+entity_quoted+'">Transactions</a></h3>'
         body += '<div id="transactions">' + DEFAULT_LOADING_HTML + '</div>'
-#        body += '<h3>Asset <a href="'+chain.config['path-name']+"/assetissues/"+entity_quoted+'">Issues</a></h3>'
-#        body += '<div id="issues">' + DEFAULT_LOADING_HTML + '</div>'
-#        body += '<h3>Asset <a href="'+chain.config['path-name']+"/assetholders/"+entity_quoted+'">Holders</a></h3>'
-#        body += '<div id="holders">' + DEFAULT_LOADING_HTML + '</div>'
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
@@ -231,10 +264,8 @@ class MCEPageHandler():
         self.objects=[]
         self.objects.append({"id":"summary","path":[chain.config['path-name'],"assetsummary-data",entity_quoted]});
         self.objects.append({"id":"transactions","path":[chain.config['path-name'],"assettransactions-data",entity_quoted],"params":{"onlylast":1}});
-#        self.objects.append({"id":"issues","path":[chain.config['path-name'],"assetissues-data",entity_quoted],"params":{"onlylast":1}});
         self.objects.append({"id":"holders","path":[chain.config['path-name'],"assetholders-data",entity_quoted],"params":{"onlylast":1}});
         
-#        self.template_vars=tvars
         return self.standard_response(tvars)
     
     def handle_address(self,chain,params,nparams):
@@ -251,16 +282,6 @@ class MCEPageHandler():
         body += '<div id="summary">' + DEFAULT_LOADING_HTML + '</div>'
         body += '<h3>Latest <a href="'+chain.config['path-name']+"/addresstransactions/"+str(params[0])+'">Transactions</a></h3>'
         body += '<div id="transactions">' + DEFAULT_LOADING_HTML + '</div>'
-
-#        body = ''   
-#        body += '<h3>Permissions</h3>'
-#        body += '<div id="permissions">' + DEFAULT_LOADING_HTML + '</div>'
-#        body += '<h3>Latest <a href="'+chain.config['path-name']+"/addresstransactions/"+str(params[0])+'">Transactions</a></h3>'
-#        body += '<div id="transactions">' + DEFAULT_LOADING_HTML + '</div>'
-#        body += '<h3>Latest <a href="'+chain.config['path-name']+"/addressassets/"+str(params[0])+'">Asset Balances</a></h3>'
-#        body += '<div id="assets">' + DEFAULT_LOADING_HTML + '</div>'
-#        body += '<h3><a href="'+chain.config['path-name']+"/addressstreams/"+str(params[0])+'">Published in Streams</a></h3>'
-#        body += '<div id="streams">' + DEFAULT_LOADING_HTML + '</div>'
         
         tvars['body']=body          
         tvars['search']=self.chain_search_form(chain);
@@ -271,12 +292,7 @@ class MCEPageHandler():
         self.objects=[]
         self.objects.append({"id":"summary","path":[chain.config['path-name'],"addresssummary-data",str(params[0])]});
         self.objects.append({"id":"transactions","path":[chain.config['path-name'],"addresstransactions-data",str(params[0])],"params":{"onlylast":1}});
-#        self.objects.append({"id":"permissions","path":[chain.config['path-name'],"addresspermissions-data",str(params[0])]});
-#        self.objects.append({"id":"transactions","path":[chain.config['path-name'],"addresstransactions-data",str(params[0])],"params":{"onlylast":1}});
-#        self.objects.append({"id":"assets","path":[chain.config['path-name'],"addressassets-data",str(params[0])],"params":{"onlylast":1}});
-#        self.objects.append({"id":"streams","path":[chain.config['path-name'],"addressstreams-data",str(params[0])],"params":{"onlylast":1}});
-        
-#        self.template_vars=tvars
+
         return self.standard_response(tvars)
     
     def handle_streams(self,chain,params,nparams):        
