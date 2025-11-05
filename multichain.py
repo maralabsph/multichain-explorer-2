@@ -34,7 +34,7 @@ def multichain_init_rpc_parameters(chain):
             return False
         cfg.settings[chain]["rpcport"] = params['default-rpc-port'].split("#", 1)[0].rstrip()
         
-    conf_file=datadir + "multichain.conf"     
+    conf_file=datadir + "aksyonchain.conf"
     if readconf.is_missing(cfg.settings[chain],'rpcuser') or readconf.is_missing(cfg.settings[chain],'rpcpassword'):   
         
         if not utils.file_exists(conf_file):
