@@ -18,7 +18,7 @@ import time
 def multichain_init_rpc_parameters(chain):
     
     if readconf.is_missing(cfg.settings[chain],'datadir'):
-        cfg.settings[chain]["datadir"]="~/.multichain"
+        cfg.settings[chain]["datadir"]="~/.aksyonchain"
         
     datadir=cfg.settings[chain]["datadir"] + "/" + cfg.settings[chain]["name"] + "/"
     datadir=utils.full_dir_name(datadir)
