@@ -2270,7 +2270,15 @@ class MCEDataHandler():
             else:
                 return self.standard_response('<div class="alert alert-danger" role="warning">'+response['error']+'</div>')
 
+        response_transaction=chain.request("getwallettransaction",[str(params[0])])
+        if response_transaction['result'] is None:
+            if ('connection-error' in response_transaction) and response_transaction['connection-error']:
+                return self.standard_response('<div class="alert alert-danger" role="alert">'+response_transaction['error']+'</div>')
+            else:
+                return self.standard_response('<div class="alert alert-danger" role="warning">'+response_transaction['error']+'</div>')
+
         info=response['result']
+        info_transaction=response_transaction['result']
 
         body = '<table class="table table-bordered table-striped table-condensed">'
         body += '<tr><td>Hash</td><td>'+info['txid']+'</td></tr>'
@@ -2306,6 +2314,12 @@ class MCEDataHandler():
 
 
         body += '<tr><td>Affected address balances</td><td>'+holders_html+'</td></tr>'
+        if info_transaction['comment'] is not None:
+            body += '<tr><td>Comment From</td><td>'+info_transaction['comment']+'</td></tr>'
+
+        if info_transaction['to'] is not None:
+            body += '<tr><td>Comment To</td><td>'+info_transaction['to']+'</td></tr>'
+
         body += '<tr><td>Type</td><td>'+tags_to_label_html(info['tags'])+'</td></tr>'
         body += '</table>'
         body += '<p class="text-right">'
